@@ -29,8 +29,7 @@ angular.module('cryptoApp', [])
             var signature = privateKey.sign(msgHash.toString(), 'hex');
             //$scope.ecdsaVerifySignatureR = signature.r.toString(16);
             //$scope.ecdsaVerifySignatureS = signature.s.toString(16);
-            $scope.ecdsaVerifySignature = signature.toDER('hex');
-            console.log(signature.toDER('hex'));
+            $scope.ecdsaVerifySignature = signature.r.toString(16) + '\n' + signature.s.toString(16);
         };
 
         // Section 5: ECDSA Digital Signature Verification
@@ -40,12 +39,12 @@ angular.module('cryptoApp', [])
             //var signature = { r: $scope.ecdsaVerifySignatureR, s: $scope.ecdsaVerifySignatureS };
             var aa = $scope.ecdsaVerifySignature.split('\n');
             if (aa.length != 2) {
-                $scope.ecdsaVerifyResult =  'Invalid';
+                $scope.ecdsaVerifyResult =  'Invalid Signature';
                 $scope.ecdsaVerifyResultColor =  'red';
                 return;
             }
             var signature = { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
-            $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid' : 'Invalid';
-            $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid' ? 'green' : 'red';
+            $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid Signature' : 'Invalid  Signature';
+            $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid Signature' ? 'green' : 'red';
         };
     }]);
