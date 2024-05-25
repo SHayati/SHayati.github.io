@@ -44,7 +44,7 @@ angular.module('cryptoApp', [])
                 $scope.ecdsaVerifyResultColor =  'red';
                 return;
             }
-            { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
+            var signature = { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
             $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid' : 'Invalid';
             $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid' ? 'green' : 'red';
         };
