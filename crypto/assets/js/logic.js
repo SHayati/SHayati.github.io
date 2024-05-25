@@ -1,3 +1,9 @@
+var CryptoJS = require('crypto-js');
+var elliptic = require('elliptic');
+var EC = elliptic.ec;
+var ec = new EC('secp256k1');
+
+
 angular.module('cryptoApp', [])
     .controller('CryptoController', ['$scope', function ($scope) {
         // Import elliptic library
