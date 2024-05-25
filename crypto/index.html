@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html ng-app="cryptoApp">
+<head>
+    <title>Cryptocurrency Web App</title>
+    <!-- Add your CSS here -->
+    <script src="assets/js/node_modules/angular/angular.min.js"></script>
+    <script src="assets/js/node_modules/crypto-js/crypto-js.js"></script>
+    <script src="assets/js/node_modules/elliptic/lib/elliptic.js"></script>
+    <script src="assets/js/logic.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+
+</head>
+<body style="background-color: #396284; color: white;" ng-controller="CryptoController">
+    <div id="app">
+        <h1>Cryptocurrency Algorithms</h1>
+
+        <!-- Section 1: SHA256 -->
+        <section>
+            <h2>SHA256</h2>
+            <p>Enter text to compute its SHA256 hash.</p>
+            <label for="sha-input">Input:</label>
+            <textarea id="sha-input" ng-model="shaInput"></textarea>
+            <button id="sha-button" ng-click="computeSHA256()">Compute SHA256</button>
+            <label for="sha-output">Output:</label>
+            <textarea id="sha-output" ng-model="shaOutput" readonly></textarea>
+        </section>
+
+        <!-- Section 2: ECDSA Key Pair -->
+        <section>
+            <h2>ECDSA Key Pair</h2>
+            <p>Generate a pair of ECDSA keys. These keys are called private and public keys. 
+            The public served as the account number while the private key serve as the password.
+            Thus you can share the public key with the public, but you must keep your private key, of course private.</p>
+            <button id="ecdsa-button" ng-click="generateKeys()">Generate Keys</button>
+            <label for="ecdsa-private">Private Key:</label>
+            <textarea id="ecdsa-private" ng-model="ecdsaPrivate" readonly></textarea>
+            <label for="ecdsa-public">Public Key:</label>
+            <textarea id="ecdsa-public" ng-model="ecdsaPublic" readonly></textarea>
+        </section>
+
+        <!-- Section 3: ECDSA Digital Signature -->
+        <section>
+            <h2>ECDSA Digital Signature</h2>
+            <p>Encrypt and decrypt content using ECDSA keys.</p>
+            <div>
+                <label for="ecdsa-encrypt-private">Private Key:</label>
+                <textarea id="ecdsa-encrypt-private" ng-model="ecdsaEncryptPrivate"></textarea>
+                <label for="ecdsa-encrypt-content">Content:</label>
+                <textarea id="ecdsa-encrypt-content" ng-model="ecdsaEncryptContent"></textarea>
+            </div>
+            <button id="ecdsa-encrypt-button" ng-click="encryptContent()">Encrypt Content</button>
+            <label for="ecdsa-encrypted">Encrypted Content:</label>
+            <textarea id="ecdsa-encrypted" ng-model="encrypted" readonly></textarea>
+            <label for="ecdsa-decrypt-public">Public Key:</label>
+            <textarea id="ecdsa-decrypt-public" ng-model="ecdsaDecryptPublic"></textarea>
+            <button id="ecdsa-decrypt-button" ng-click="decryptContent()">Decrypt Content</button>
+            <label for="ecdsa-decrypted">Decrypted Content:</label>
+            <textarea id="ecdsa-decrypted" ng-model="decrypted" readonly></textarea>
+        </section>
+    </div>
+</body>
+</html>

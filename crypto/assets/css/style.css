@@ -1,0 +1,14 @@
+﻿body {
+    margin: 20px;
+}
+
+textarea {
+    width: 100%;
+    word-wrap: break-word;
+    overflow-y: scroll;
+    resize: vertical;
+}
+
+section {
+    margin-bottom: 20px;
+}
