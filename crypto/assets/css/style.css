@@ -3,6 +3,22 @@
     font-family: 'Segoe UI','Roboto', 'Open Sans', sans-serif, Tahoma, Geneva, Verdana;
 }
 
+label {
+    display: block;
+    margin-top: 20px;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+    .input-group label {
+        margin-right: 10px;
+    }
+
+
 textarea {
     width: 100%;
     word-wrap: break-word;

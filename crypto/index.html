@@ -2,7 +2,7 @@
 <html ng-app="cryptoApp">
 <head>
     <title>Cryptocurrency Web App</title>
-    
+
     <link href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans&display=swap" rel="stylesheet">
     <script src="assets/js/node_modules/angular/angular.min.js"></script>
     <script src="assets/js/bundle.js"></script>
@@ -17,12 +17,15 @@
         <section>
             <h2>SHA256</h2>
             <p>Enter text to compute its SHA256 hash.</p>
-            <label for="sha-input">Input:</label>
-            <textarea id="sha-input" ng-model="shaInput"></textarea>
+            <div class="input-group">
+                <label for="sha-input">Input:</label>
+                <textarea id="sha-input" ng-model="shaInput"></textarea>
+            </div>
             <button id="sha-button" ng-click="computeSHA256()">Compute SHA256</button>
-            <br />
-            <label for="sha-output">Output:</label>
-            <textarea id="sha-output" ng-model="shaOutput" readonly></textarea>
+            <div class="input-group">
+                <label for="sha-output">Output:</label>
+                <textarea id="sha-output" ng-model="shaOutput" readonly></textarea>
+            </div>
         </section>
         <br />
         <!-- Section 2: ECDSA Key Pair -->
@@ -33,12 +36,15 @@
                 The public served as the account number while the private key serve as the password.
                 Thus you can share the public key with the public, but you must keep your private key, of course private.
             </p>
-            <br />
             <button id="ecdsa-button" ng-click="generateKeys()">Generate Keys</button>
-            <label for="ecdsa-private">Private Key:</label>
-            <textarea id="ecdsa-private" ng-model="ecdsaPrivate" readonly></textarea>
-            <label for="ecdsa-public">Public Key:</label>
-            <textarea id="ecdsa-public" ng-model="ecdsaPublic" readonly></textarea>
+            <div class="input-group">
+                <label for="ecdsa-private">Private Key:</label>
+                <textarea id="ecdsa-private" ng-model="ecdsaPrivate" readonly></textarea>
+            </div>
+            <div class="input-group">
+                <label for="ecdsa-public">Public Key:</label>
+                <textarea id="ecdsa-public" ng-model="ecdsaPublic" readonly></textarea>
+            </div>
         </section>
 
         <br />
@@ -49,24 +55,32 @@
             <p>Verify a digital signature using ECDSA keys.</p>
             <br />
             <p>Digitally sign a message:</p>
-            <label for="ecdsa-verify-private">Private Key:</label>
-            <textarea id="ecdsa-verify-private" ng-model="ecdsaVerifyPrivate"></textarea>
-            <label for="ecdsa-verify-message">Message:</label>
-            <textarea id="ecdsa-verify-message" ng-model="ecdsaVerifyMessage"></textarea>
+            <div class="input-group">
+                <label for="ecdsa-verify-private">Private Key:</label>
+                <textarea id="ecdsa-verify-private" ng-model="ecdsaVerifyPrivate"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="ecdsa-verify-message">Message:</label>
+                <textarea id="ecdsa-verify-message" ng-model="ecdsaVerifyMessage"></textarea>
+            </div>
             <br />
             <button id="ecdsa-signature-button" ng-click="digiatlSignature()">Digital Signature</button>
-            <label for="ecdsa-verify-signature">Digital Signature:</label>
-            <textarea id="ecdsa-verify-signature" ng-model="ecdsaVerifySignature"></textarea>
-            <br />
+            <div class="input-group">
+                <label for="ecdsa-verify-signature">Digital Signature:</label>
+                <textarea id="ecdsa-verify-signature" ng-model="ecdsaVerifySignature"></textarea>
+            </div>
             <br />
             <p>Verify the digital signature using public key:</p>
+            <div class="input-group">
+                <label for="ecdsa-verify-public">Public Key:</label>
+                <textarea id="ecdsa-verify-public" ng-model="ecdsaVerifyPublic"></textarea>
+            </div>
             <br />
-            <label for="ecdsa-verify-public">Public Key:</label>
-            <textarea id="ecdsa-verify-public" ng-model="ecdsaVerifyPublic"></textarea>
             <button id="ecdsa-verify-button" ng-click="verifySignature()">Verify Signature</button>
-            <br />
-            <label for="ecdsa-verify-result">Verification Result:</label>
-            <textarea id="ecdsa-verify-result" ng-model="ecdsaVerifyResult" readonly style="background-color: {{ecdsaVerifyResultColor}}; color: white;"></textarea>
+            <div class="input-group">
+                <label for="ecdsa-verify-result">Verification Result:</label>
+                <textarea id="ecdsa-verify-result" ng-model="ecdsaVerifyResult" readonly style="background-color: {{ecdsaVerifyResultColor}}; color: white;"></textarea>
+            </div>
         </section>
 
     </div>
