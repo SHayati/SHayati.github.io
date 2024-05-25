@@ -66,8 +66,12 @@
             <br />
             <button id="ecdsa-signature-button" ng-click="digiatlSignature()">Digital Signature</button>
             <div class="input-group">
-                <label for="ecdsa-verify-signature">Digital Signature:</label>
-                <textarea id="ecdsa-verify-signature" ng-model="ecdsaVerifySignature"></textarea>
+                <label for="ecdsa-verify-r">r:</label>
+                <textarea id="ecdsa-verify-r" ng-model="ecdsaVerifySignatureR"></textarea>
+            </div>
+            <div class="input-group">
+                <label for="ecdsa-verify-s">s:</label>
+                <textarea id="ecdsa-verify-s" ng-model="ecdsaVerifySignatureS"></textarea>
             </div>
             <br />
             <p>Verify the digital signature using public key:</p>
