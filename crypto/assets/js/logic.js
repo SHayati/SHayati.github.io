@@ -30,6 +30,7 @@ angular.module('cryptoApp', [])
             //$scope.ecdsaVerifySignatureR = signature.r.toString(16);
             //$scope.ecdsaVerifySignatureS = signature.s.toString(16);
             $scope.ecdsaVerifySignature = signature.toDER('hex');
+            console.log(signature.toDER('hex'));
         };
 
         // Section 5: ECDSA Digital Signature Verification
