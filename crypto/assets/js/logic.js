@@ -23,17 +23,18 @@ angular.module('cryptoApp', [])
         };
 
         // Section 3: ECDSA Digital Signature
-        $scope.encryptContent = function () {
-            var privateKey = ec.keyFromPrivate($scope.ecdsaEncryptPrivate);
-            var msgHash = CryptoJS.SHA256($scope.ecdsaEncryptContent);
+        $scope.digitalSignature = function () {
+            var privateKey = ec.keyFromPrivate($scope.ecdsaVerifyPrivate);
+            var msgHash = CryptoJS.SHA256($scope.ecdsaVerifyMessage);
             var signature = privateKey.sign(msgHash.toString(), 'hex');
-            $scope.encrypted = signature.toDER('hex');
+            $scope.ecdsaVerifySignature = signature.toDER('hex');
         };
 
-        $scope.decryptContent = function () {
-            var publicKey = ec.keyFromPublic($scope.ecdsaDecryptPublic, 'hex');
-            var msgHash = CryptoJS.SHA256($scope.ecdsaEncryptContent);
-            var signature = { r: $scope.encrypted.slice(0, 64), s: $scope.encrypted.slice(64) };
-            $scope.decrypted = publicKey.verify(msgHash.toString(), signature) ? 'Valid' : 'Invalid';
+        $scope.verifySignature = function () {
+            var publicKey = ec.keyFromPublic($scope.ecdsaVerifyPublic, 'hex');
+            var msgHash = CryptoJS.SHA256($scope.ecdsaVerifyMessage);
+            var signature = { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
+            $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid' : 'Invalid';
+            $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid' ? 'green' : 'red';
         };
     }]);
