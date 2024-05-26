@@ -9,8 +9,13 @@ label {
     word-wrap: break-word;
 }
 
+img.lang:hover {
+    cursor:pointer;
+}
 img.active {
     border: 2px solid white;
+    box-shadow: 0px 0px 3px white; /* Adds a white shadow when the flag is active */
+    border-radius: 50%; /* Makes the shadow circular */
 }
 
 .input-group {
