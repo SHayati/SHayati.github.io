@@ -5,7 +5,8 @@
 
 label {
     display: block;
-    margin-top: 20px;
+    width: 20em;
+    word-wrap: break-word;
 }
 
 .input-group {
