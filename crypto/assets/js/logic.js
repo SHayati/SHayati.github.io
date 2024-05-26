@@ -5,7 +5,7 @@ var ec = new EC('secp256k1');
 
 
 angular.module('cryptoApp', [])
-    .controller('CryptoController', ['$scope', function ($scope) {
+    .controller('CryptoController', ['$scope', '$timeout', function ($scope, $timeout) {
         // Import elliptic library
         var EC = elliptic.ec;
         var ec = new EC('secp256k1');
@@ -42,11 +42,11 @@ angular.module('cryptoApp', [])
                         label3: 'Digital Signature:'
                     },
                     h3: 'Verify the digital signature using public key:',
-                    p2: 'Now we shall verify the message and its signature against the exposed public key. The signature will be verified only if it is signed by the correct private key:',
+                    p2: 'The only person who knows the private key is you and thus the signature will be valid if it is signed by you. This is why you have to keep the private key secure and avoid revealing it to others. Now we will verify the message and its signature against the exposed public key. The signature will be verified only if it is signed by the correct private key:',
                     button: 'Verify Signature',
                     label4: 'Verification Result:'
                 },
-                p: 'The only person who knows the private key is you and thus the signature will be valid if it is signed by you. This is why you have to keep the private key secure and avoid revealing it to others. All the transactions on the blockchain are signed by their owners. You are the owner of your cryptocurrency and you are the only one who can sign a check to spend it so long as you have your private key kept secret.'
+                p: 'All the transactions on the blockchain are signed by their owners. You are the owner of your cryptocurrency and you are the only one who can sign a check to spend it so long as you have your private key kept secret.'
             },
             fa: {
                 title: 'برنامه وب ارز دیجیتال',
@@ -79,11 +79,11 @@ angular.module('cryptoApp', [])
                         label3: 'امضای دیجیتال:'
                     },
                     h3: 'تأیید امضای دیجیتال با استفاده از کلید عمومی:',
-                    p2: 'اکنون پیام و امضای آن را در مقابل کلید عمومی نمایش داده شده تأیید می‌کنیم. امضا فقط در صورتی تأیید می‌شود که با کلید خصوصی صحیح امضا شده باشد:',
+                    p2: 'امضای دیجیتال توسط کلید خصوصی کد می شود و تنها کسی که کلید خصوصی را می‌داند شما هستید. بنابراین امضای دیجیتال معتبر خواهد بود اگر توسط شما امضا شده باشد. به همین دلیل شما باید کلید خصوصی را ایمن نگه دارید و از افشای آن به دیگران خودداری کنید. اکنون صحت امضای دیجیتال الصاق شده به پیام را صحت سنجی می کنیم. به این منظور آن را در مقابل کلید عمومی که اعتبارسنجی می کنیم. امضای صورت گرفته فقط در صورتی تأیید می‌شود که با کلید خصوصی صحیح امضا شده باشد:',
                     button: 'تأیید امضا',
                     label4: 'نتیجه تأیید:'
                 },
-                p: 'تنها کسی که کلید خصوصی را می‌داند شما هستید و بنابراین امضا معتبر خواهد بود اگر توسط شما امضا شده باشد. به همین دلیل شما باید کلید خصوصی را ایمن نگه دارید و از افشای آن به دیگران خودداری کنید. تمام تراکنش‌ها در بلاکچین توسط صاحبانشان امضا می‌شوند. شما صاحب ارز دیجیتال خود هستید و تنها کسی هستید که می‌توانید یک چک را برای خرج کردن آن امضا کنید، مادامی که کلید خصوصی خود را به صورت مخفی نگه دارید.'
+                p: 'تمام تراکنش‌ها در بلاکچین توسط صاحبانشان امضا می‌شوند. مادامی که کلید خصوصی را نزد خود به صورت مخفی نگه دارید شما صاحب ارز دیجیتال خود و تنها کسی هستید که می‌تواند یک چک برای خرج کردن آن امضا کند.'
             }
         };
 
@@ -129,8 +129,8 @@ angular.module('cryptoApp', [])
             $scope.ecdsaVerifySignature = signature.r.toString(16) + '\n' + signature.s.toString(16);
         };
 
-        $scope.$watch('ecdsaVerifyMessage', function (newVal, oldVal) {
-            if (newVal !== oldVal) {
+        $scope.$watchGroup(['ecdsaVerifyMessage', 'ecdsaVerifyPrivate'], function (newValues, oldValues) {
+            if (newValues !== oldValues) {
                 $timeout.cancel($scope.digitalSignaturePromise); // Cancel previous timeout if it exists
                 $scope.digitalSignaturePromise = $timeout($scope.digitalSignature, 1000); // Start a new timeout
             }
