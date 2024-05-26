@@ -7,6 +7,9 @@
     <script src="assets/js/node_modules/angular/angular.min.js"></script>
     <script src="assets/js/bundle.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
 
 </head>
 <body style="background-color: #396284; color: white; direction: {{direction}};" ng-controller="CryptoController">
@@ -43,8 +46,7 @@
                 <label for="ecdsa-public">{{content.section2.label2}}</label>
                 <textarea id="ecdsa-public" ng-model="ecdsaPublic" readonly></textarea>
             </div>
-            <div><span>Bitcoin Address (Account number): </span><span style="color:red">{{bitcoinAddress}}</span></div>
-            <p>{{content.section2.bitcoinAddress}}</p>
+            <div><span>{{content.section2.bitcoinAddress}} </span><span style="color:red">{{bitcoinAddress}}</span></div>
 
         </section>
 
