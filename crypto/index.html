@@ -76,7 +76,9 @@
             <button id="ecdsa-verify-button" ng-click="verifySignature()">Verify Signature</button>
             <br />
             <label for="ecdsa-verify-result">Verification Result:</label>
-            <div id="ecdsa-verify-result" ng-model="ecdsaVerifyResult" readonly style="width:30em;height:3em;background-color: {{ecdsaVerifyResultColor}}; color: white;"></div>
+            <div id="ecdsa-verify-result" readonly style="width:30em;height:3em;background-color: {{ecdsaVerifyResultColor}}; color: white;">
+                <span>{{ecdsaVerifyResult}}</span>
+            </div>
         </section>
 
     </div>
