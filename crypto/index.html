@@ -52,29 +52,37 @@
         <!-- Section 3: ECDSA Digital Signature Verification -->
         <section>
             <h2>ECDSA Digital Signature Verification</h2>
-            <p>Verify a digital signature using ECDSA keys.</p>
-            <br />
-            <p>Digitally sign a message:</p>
-            <div class="input-group">
-                <label for="ecdsa-verify-private">Private Key:</label>
-                <textarea id="ecdsa-verify-private" ng-model="ecdsaVerifyPrivate"></textarea>
-            </div>
-            <div class="input-group">
-                <label for="ecdsa-verify-message">Message:</label>
-                <textarea id="ecdsa-verify-message" ng-model="ecdsaVerifyMessage"></textarea>
-            </div>
-            <br />
-            <button id="ecdsa-signature-button" ng-click="digitalSignature()">Digital Signature</button>
-            <div class="input-group">
-                <label for="ecdsa-verify-sign">Digital Signature:</label>
-                <textarea id="ecdsa-verify-sign" ng-model="ecdsaVerifySignature"></textarea>
-            </div>
-            <br />
-            <h3>Verify the digital signature using public key:</h3>
+            <p>Verify a digital signature using ECDSA keys. Expose your public key to the public.</p>
             <div class="input-group">
                 <label for="ecdsa-verify-public">Public Key:</label>
                 <textarea id="ecdsa-verify-public" ng-model="ecdsaVerifyPublic"></textarea>
             </div>
+
+
+            <section>
+                <h3>Digitally sign a message:</h3>
+                <p>Write down a message you would like to later sign it:</p>
+                <div class="input-group">
+                    <label for="ecdsa-verify-message">Message:</label>
+                    <textarea id="ecdsa-verify-message" ng-model="ecdsaVerifyMessage"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="ecdsa-verify-private">Private Key:</label>
+                    <textarea id="ecdsa-verify-private" ng-model="ecdsaVerifyPrivate"></textarea>
+                </div>
+                <p>Here is the digital signature of the message signed by the previous private key:</p>
+                <div class="input-group">
+                    <label for="ecdsa-verify-sign">Digital Signature:</label>
+                    <textarea id="ecdsa-verify-sign" ng-model="ecdsaVerifySignature" readonly></textarea>
+                </div>
+
+            </section>
+
+
+            <h3>Verify the digital signature using public key:</h3>
+            <p>Now we shall verify the message and its signature against the exposed public key. 
+            The signiture will be verified only if it signed by the proper key:</p>
 
             <button id="ecdsa-verify-button" ng-click="verifySignature()">Verify Signature</button>
             <br />
@@ -84,8 +92,15 @@
                     <span style="font-weight:bold;font-size:2em;">{{ecdsaVerifyResult}}</span>
                 </div>
             </div>
-            
+
         </section>
+        <p>
+            The only person who knows the private key is you and thus you are the signature will be valid if it is isgned by you.
+            This is why you have to keep the private key secure and avoid revel it to others.
+            All the transactions on the blockchains are signed by their owners.
+            You are the owner of your cryptocurrency and you are the only one who can sign a check to spend it,
+            until you have your prvaite key secret
+        </p>
 
     </div>
 </body>

@@ -32,6 +32,12 @@ angular.module('cryptoApp', [])
             $scope.ecdsaVerifySignature = signature.r.toString(16) + '\n' + signature.s.toString(16);
         };
 
+        $scope.$watch('ecdsaVerifyMessage', function (newVal, oldVal) {
+            if (newVal !== oldVal) {
+                $timeout.cancel($scope.digitalSignaturePromise); // Cancel previous timeout if it exists
+                $scope.digitalSignaturePromise = $timeout($scope.digitalSignature, 1000); // Start a new timeout
+            }
+        });
         // Section 5: ECDSA Digital Signature Verification
         $scope.verifySignature = function () {
             try {
