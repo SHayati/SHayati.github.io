@@ -71,14 +71,20 @@
             </div>
             <br />
             <h3>Verify the digital signature using public key:</h3>
-            <label for="ecdsa-verify-public">Public Key:</label>
-            <textarea id="ecdsa-verify-public" ng-model="ecdsaVerifyPublic"></textarea>
+            <div class="input-group">
+                <label for="ecdsa-verify-public">Public Key:</label>
+                <textarea id="ecdsa-verify-public" ng-model="ecdsaVerifyPublic"></textarea>
+            </div>
+
             <button id="ecdsa-verify-button" ng-click="verifySignature()">Verify Signature</button>
             <br />
-            <label for="ecdsa-verify-result">Verification Result:</label>
-            <div id="ecdsa-verify-result" readonly style="width:30em;height:3em;background-color: {{ecdsaVerifyResultColor}}; color: white;">
-                <span>{{ecdsaVerifyResult}}</span>
+            <div class="input-group">
+                <label for="ecdsa-verify-result">Verification Result:</label>
+                <div id="ecdsa-verify-result" readonly style="width:30em;height:3em;background-color: {{ecdsaVerifyResultColor}}; color: white;">
+                    <span>{{ecdsaVerifyResult}}</span>
+                </div>
             </div>
+            
         </section>
 
     </div>
