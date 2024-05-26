@@ -1,4 +1,4 @@
-var CryptoJS = require('crypto-js');
+﻿var CryptoJS = require('crypto-js');
 var elliptic = require('elliptic');
 var EC = elliptic.ec;
 var ec = new EC('secp256k1');
@@ -23,7 +23,7 @@ angular.module('cryptoApp', [])
                 },
                 section2: {
                     h2: 'ECDSA Key Pair',
-                    p: 'Generate a pair of ECDSA keys. These keys are called private and public keys. Transaction request on the network are digitally signed by private key. The actual identity of the person who has signed the transaction can later be verified by public. Public key also provide the Bitcoin adress which. For simplicity public key can be understood as account number and the validator of your messages in the public while the private key can serve as the password. Thus you can share the public key with the public, but you must keep your private key, of course private and strictly avoid revealing that.',
+                    p: 'Generate a pair of ECDSA keys. These keys are called private and public keys. Transaction requests on the network are digitally signed by private key. The actual identity of the person who has signed the transaction can later be verified by the public. The public key also provides the Bitcoin address. For simplicity public key can be understood as an account number and the validator of your messages in the public while the private key can serve as the password. Thus you can share the public key with the public, but you must keep your private key, of course private and strictly avoid revealing that.',
                     button: 'Generate Keys',
                     label1: 'Private Key:',
                     label2: 'Public Key:',
@@ -42,23 +42,63 @@ angular.module('cryptoApp', [])
                         label3: 'Digital Signature:'
                     },
                     h3: 'Verify the digital signature using public key:',
-                    p2: 'Now we shall verify the message and its signature against the exposed public key. The signiture will be verified only if it signed by the proper key:',
+                    p2: 'Now we shall verify the message and its signature against the exposed public key. The signature will be verified only if it is signed by the correct private key:',
                     button: 'Verify Signature',
                     label4: 'Verification Result:'
                 },
-                p: 'The only person who knows the private key is you and thus you are the signature will be valid if it is isgned by you. This is why you have to keep the private key secure and avoid revel it to others. All the transactions on the blockchains are signed by their owners. You are the owner of your cryptocurrency and you are the only one who can sign a check to spend it, until you have your prvaite key secret'
+                p: 'The only person who knows the private key is you and thus the signature will be valid if it is signed by you. This is why you have to keep the private key secure and avoid revealing it to others. All the transactions on the blockchain are signed by their owners. You are the owner of your cryptocurrency and you are the only one who can sign a check to spend it so long as you have your private key kept secret.'
             },
             fa: {
-                // Persian content goes here...
+                title: 'برنامه وب ارز دیجیتال',
+                h1: 'الگوریتم‌های ارز دیجیتال',
+                section1: {
+                    h2: 'SHA256',
+                    p: 'متن را وارد کنید تا هش SHA256 آن محاسبه شود.',
+                    label1: 'ورودی:',
+                    button: 'محاسبه SHA256',
+                    label2: 'خروجی:'
+                },
+                section2: {
+                    h2: 'جفت کلید ECDSA',
+                    p: 'یک جفت کلید ECDSA تولید کنید. این کلیدها به عنوان کلیدهای خصوصی و عمومی شناخته می‌شوند. درخواست‌های تراکنش در شبکه با کلید خصوصی امضا می‌شوند. هویت واقعی فردی که تراکنش را امضا کرده است بعداً با کلید عمومی قابل تأیید است. کلید عمومی همچنین آدرس بیت‌کوین را فراهم می‌کند. برای سادگی، کلید عمومی می‌تواند به عنوان شماره حساب و تأییدکننده پیام‌های شما در عموم درک شود، در حالی که کلید خصوصی می‌تواند به عنوان رمز عبور عمل کند. بنابراین شما می‌توانید کلید عمومی را با عموم به اشتراک بگذارید، اما باید کلید خصوصی خود را به طور خصوصی نگه دارید و از افشای آن خودداری کنید.',
+                    button: 'تولید کلیدها',
+                    label1: 'کلید خصوصی:',
+                    label2: 'کلید عمومی:',
+                    bitcoinAddress: 'آدرس بیت‌کوین تولید شده توسط کلید عمومی: '
+                },
+                section3: {
+                    h2: 'تأیید امضای دیجیتال ECDSA',
+                    p: 'یک امضای دیجیتال را با استفاده از کلیدهای ECDSA تأیید کنید. کلید عمومی خود را به عموم نمایش دهید.',
+                    label1: 'کلید عمومی:',
+                    subsection: {
+                        h3: 'امضای دیجیتال یک پیام:',
+                        p: 'پیامی را که می‌خواهید امضا کنید بنویسید. سعی کنید یک تراکنش خیالی بنویسید، مثلاً می‌خواهید 1 ساتوشی (0.00000001 بیت‌کوین) از حساب خود به حساب دیگری بفرستید:',
+                        label1: 'پیام:',
+                        label2: 'کلید خصوصی:',
+                        p2: 'در اینجا امضای دیجیتال پیام امضا شده توسط کلید خصوصی قبلی آمده است:',
+                        label3: 'امضای دیجیتال:'
+                    },
+                    h3: 'تأیید امضای دیجیتال با استفاده از کلید عمومی:',
+                    p2: 'اکنون پیام و امضای آن را در مقابل کلید عمومی نمایش داده شده تأیید می‌کنیم. امضا فقط در صورتی تأیید می‌شود که با کلید خصوصی صحیح امضا شده باشد:',
+                    button: 'تأیید امضا',
+                    label4: 'نتیجه تأیید:'
+                },
+                p: 'تنها کسی که کلید خصوصی را می‌داند شما هستید و بنابراین امضا معتبر خواهد بود اگر توسط شما امضا شده باشد. به همین دلیل شما باید کلید خصوصی را ایمن نگه دارید و از افشای آن به دیگران خودداری کنید. تمام تراکنش‌ها در بلاکچین توسط صاحبانشان امضا می‌شوند. شما صاحب ارز دیجیتال خود هستید و تنها کسی هستید که می‌توانید یک چک را برای خرج کردن آن امضا کنید، مادامی که کلید خصوصی خود را به صورت مخفی نگه دارید.'
             }
         };
 
         // Set default language
         $scope.content = content.en;
 
+        // Function to change language
         $scope.setLanguage = function (lang) {
             $scope.content = content[lang];
+            $scope.language = lang;
+            $scope.direction = lang === 'fa' ? 'rtl' : 'ltr';
         };
+
+        // Set default language
+        $scope.setLanguage('en');
 
         // Section 1: SHA256
         $scope.computeSHA256 = function () {

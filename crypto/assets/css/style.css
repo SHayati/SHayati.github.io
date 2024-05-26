@@ -9,6 +9,10 @@ label {
     word-wrap: break-word;
 }
 
+img.active {
+    border: 2px solid white;
+}
+
 .input-group {
     display: flex;
     justify-content: space-between;

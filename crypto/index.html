@@ -9,10 +9,10 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 </head>
-<body style="background-color: #396284; color: white;" ng-controller="CryptoController">
+<body style="background-color: #396284; color: white; direction: {{direction}};" ng-controller="CryptoController">
     <div id="app">
-        <img src="assets/images/uk_flag_48.png" alt="UK Flag" ng-click="setLanguage('en')" style="margin: 1em;">
-        <img src="assets/images/iran_flag_48.png" alt="Iran Flag" ng-click="setLanguage('fa')" style="margin: 1em;">
+        <img src="assets/images/uk_flag_48.png" alt="UK Flag" ng-click="setLanguage('en')" style="margin: 1em;" ng-class="{active: language === 'en'}">
+        <img src="assets/images/iran_flag_48.png" alt="Iran Flag" ng-click="setLanguage('fa')" style="margin: 1em;" ng-class="{active: language === 'fa'}">
         <h1>{{content.h1}}</h1>
 
         <!-- Section 1: SHA256 -->
@@ -45,7 +45,7 @@
             </div>
             <div><span>Bitcoin Address (Account number): </span><span style="color:red">{{bitcoinAddress}}</span></div>
             <p>{{content.section2.bitcoinAddress}}</p>
-            
+
         </section>
 
         <br />
