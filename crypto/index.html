@@ -14,8 +14,10 @@
 </head>
 <body style="background-color: #396284; color: white; direction: {{direction}};" ng-controller="CryptoController">
     <div id="app">
-        <img src="assets/images/uk_flag_48.png" class="lang" alt="UK Flag" ng-click="setLanguage('en')" style="margin: 1em;" ng-class="{active: language === 'en'}">
-        <img src="assets/images/iran_flag_48.png" class="lang" alt="Iran Flag" ng-click="setLanguage('fa')" style="margin: 1em;" ng-class="{active: language === 'fa'}">
+        <div style="direction:ltr;">
+            <img src="assets/images/uk_flag_48.png" class="lang" alt="UK Flag" ng-click="setLanguage('en')" style="margin: 1em;" ng-class="{active: language === 'en'}">
+            <img src="assets/images/iran_flag_48.png" class="lang" alt="Iran Flag" ng-click="setLanguage('fa')" style="margin: 1em;" ng-class="{active: language === 'fa'}">
+        </div>
         <h1>{{content.h1}}</h1>
 
         <!-- Section 1: SHA256 -->

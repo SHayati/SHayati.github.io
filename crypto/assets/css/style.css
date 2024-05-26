@@ -3,6 +3,8 @@
     font-family: 'Vazirmatn', 'Segoe UI','Roboto', 'Open Sans', sans-serif, Tahoma, Geneva, Verdana;
 }
 
+
+
 label {
     display: block;
     width: 11em;
@@ -50,6 +52,7 @@ button {
     color: white;
     cursor: pointer;
     margin-bottom: 20px;
+    font-family: 'Vazirmatn', 'Segoe UI','Roboto', 'Open Sans', sans-serif, Tahoma, Geneva, Verdana;
 }
 
     button:hover {
