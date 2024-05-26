@@ -29,22 +29,29 @@ angular.module('cryptoApp', [])
             var signature = privateKey.sign(msgHash.toString(), 'hex');
             //$scope.ecdsaVerifySignatureR = signature.r.toString(16);
             //$scope.ecdsaVerifySignatureS = signature.s.toString(16);
-            $scope.ecdsaVerifySignature = signature.r.toString() + '\n' + signature.s.toString();
+            $scope.ecdsaVerifySignature = signature.r.toString(16) + '\n' + signature.s.toString(16);
         };
 
         // Section 5: ECDSA Digital Signature Verification
         $scope.verifySignature = function () {
-            var publicKey = ec.keyFromPublic($scope.ecdsaVerifyPublic, 'hex');
-            var msgHash = CryptoJS.SHA256($scope.ecdsaVerifyMessage);
-            //var signature = { r: $scope.ecdsaVerifySignatureR, s: $scope.ecdsaVerifySignatureS };
-            var aa = $scope.ecdsaVerifySignature.split('\n');
-            if (aa.length != 2) {
-                $scope.ecdsaVerifyResult =  'Invalid Signature';
-                $scope.ecdsaVerifyResultColor =  'red';
-                return;
+            try {
+
+                var publicKey = ec.keyFromPublic($scope.ecdsaVerifyPublic, 'hex');
+                var msgHash = CryptoJS.SHA256($scope.ecdsaVerifyMessage);
+                //var signature = { r: $scope.ecdsaVerifySignatureR, s: $scope.ecdsaVerifySignatureS };
+                var aa = $scope.ecdsaVerifySignature.split('\n');
+                if (aa.length != 2) {
+                    $scope.ecdsaVerifyResult = 'Invalid Signature';
+                    $scope.ecdsaVerifyResultColor = 'red';
+                    return;
+                }
+                var signature = { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
+                $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid Signature' : 'Invalid  Signature';
+                $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid Signature' ? 'green' : 'red';
+            } catch (error) {
+                $scope.ecdsaVerifyResult = 'Invalid Signature';
+                $scope.ecdsaVerifyResultColor = 'red';
             }
-            var signature = { r: $scope.ecdsaVerifySignature.split('\n')[0], s: $scope.ecdsaVerifySignature.split('\n')[1] };
-            $scope.ecdsaVerifyResult = publicKey.verify(msgHash.toString(), signature) ? 'Valid Signature' : 'Invalid  Signature';
-            $scope.ecdsaVerifyResultColor = $scope.ecdsaVerifyResult === 'Valid Signature' ? 'green' : 'red';
+
         };
     }]);
